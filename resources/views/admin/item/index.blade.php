@@ -12,6 +12,7 @@ $title = '商品一覧';
 <th>{{ __('Item Name') }}</th>
 <th>{{ __('Item Code') }}</th>
 <th>{{ __('Price') }}</th>
+<th>{{ __('Amount') }}</th>
 </tr>
 @if ($items)
 @foreach ($items as $item)
@@ -21,6 +22,7 @@ class="btn btn-sm btn-outline-primary">{{ __('Edit') }}</a></td>
 <td>{{ $item->name }}</td>
 <td>{{ $item->code }}</td>
 <td>{{ $item->price }}</td>
+<td>{{ $item->amount }}</td>
 </tr>
 @endforeach
 @endif

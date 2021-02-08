@@ -32,3 +32,15 @@ Route::group([
     //Route::get('edit/', 'ItemController@edit')->name('edit');
     Route::post('update/{id}', 'ItemController@update')->name('update');
     });
+
+
+    Route::group([
+        'prefix' => 'cart',
+        'as' => 'cart.',
+        'middleware' => 'auth',
+        ], function () {
+        Route::get('/', 'CartController@index')->name('index');
+        Route::get('add/{id}', 'CartController@add')->name('add');
+        Route::get('remove/{id}', 'CartController@remove')->name('remove');
+        Route::get('clear', 'CartController@clear')->name('clear');
+        });

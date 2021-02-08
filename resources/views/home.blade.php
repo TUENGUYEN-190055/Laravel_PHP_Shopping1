@@ -16,7 +16,7 @@
 ¥{{ number_format($item['price']) }}
 </p>
 <p class="row justify-content-center">
-<a href="" class="btn btn-outline-info">{{ __('Add Cart') }}</a>
+<a href="{{ route('cart.add', ['id' => $item->id ]) }}" class="btn btn-outline-info">{{ __('Add Cart') }}</a>
 </p>
 </div>
 
