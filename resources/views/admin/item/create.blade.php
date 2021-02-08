@@ -34,6 +34,15 @@ class="form-control" name="price" value="{{ old('price', @$item->price) }}" requ
 </div>
 </div>
 
+<div class="form-group row">
+<label for="amount"
+class="col-md-4 col-form-label">{{ __('Amount') }}</label>
+<div class="col-md-6">
+<input id="amount" type="text"
+class="form-control" name="amount" value="{{ old('amount', @$item->amount) }}" required>
+</div>
+</div>
+
 <div class="text-center">
 <button class="btn btn-primary">{{ __('Add') }}</button>
 <a href="{{ route('admin.item.index') }}" class="btn btn-outline-primary">{{ __('Back') }}</a>
