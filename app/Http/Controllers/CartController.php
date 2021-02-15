@@ -52,5 +52,11 @@ class CartController extends Controller
         $data = Cart::orderList($request);
         return view('cart.confirm', $data);
     }
+
+
+    public function order(Request $request) {
+        Cart::order($request);
+        return view('cart.result');
+    }
    
 }

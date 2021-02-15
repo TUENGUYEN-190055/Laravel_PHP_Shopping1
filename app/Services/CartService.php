@@ -20,7 +20,15 @@ class CartService {
     return $data;
     }
 
-    
+    public function order(Request $request)
+    {
+        $user_items = UserItem::sessionValues($request);
+        if (empty($user_items)) return;
+        foreach ($user_items as $user_item) {
+        $user_item->save();
+        }
+        UserItem::clearCart($request);
+    }
 }
 
 
