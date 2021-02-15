@@ -86,6 +86,27 @@ class UserItem extends Model
     {
         $request->session()->forget(self::$session_key);
     }
+    static public function calculateTotal(Request $request)
+    {
+        $user_items = UserItem::sessionValues($request);
+        $total_price = 0;
+        if (empty($user_items)) return $total_price;
+        foreach ($user_items as $user_item) {
+        $total_price+= ($user_item->price * $user_item->amount);
+        }
+        return $total_price;
+    }
+
+    static public function updatesCart(Request $request, User $user)
+    {
+        if (!$request->all()) return;
+        $request_items = $request->all()['user_items'];
+        if (!$request_items) return;
+        foreach ($request_items as $item_id => $amount) {
+        $item = Item::find($item_id);
+        UserItem::updateCart($request, $user, $item, $amount);
+        }
+    }
 }
 
 

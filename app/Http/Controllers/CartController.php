@@ -23,9 +23,11 @@ class CartController extends Controller
         if ($request->session()->has('user_items')) {
         $user_items = UserItem::sessionValues($request);
         $items = Item::whereIn('id', array_keys($user_items))->get();
+        $total_price = UserItem::calculateTotal($request);
         $data = [
         'user_items' => $user_items,
-        'items' => $items
+        'items' => $items,
+        'total_price' => $total_price,
         ];
         }
         return view('cart.index', $data);
@@ -47,4 +49,16 @@ class CartController extends Controller
         UserItem::clearCart($request);
         return redirect()->route('cart.index');
     }
+
+    public function updates(Request $request)
+    {
+        UserItem::updatesCart($request, $this->user);
+        return redirect()->route('cart.index');
+    }
+
+    public function confirm(Request $request){
+        $data = [];
+        return view('cart.comfirm', $data);
+    }
+   
 }
